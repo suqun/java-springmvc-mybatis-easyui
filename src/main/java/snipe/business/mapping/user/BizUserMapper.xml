@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="BizUserMapper" >
+  <resultMap id="BaseResultMap" type="snipe.mybatis.model.User" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="AGE" property="age" jdbcType="INTEGER" />
+    <result column="CREATEDATETIME" property="createdatetime" jdbcType="TIMESTAMP" />
+    <result column="LOGINNAME" property="loginname" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="PHOTO" property="photo" jdbcType="VARCHAR" />
+    <result column="PWD" property="pwd" jdbcType="VARCHAR" />
+    <result column="SEX" property="sex" jdbcType="VARCHAR" />
+    <result column="UPDATEDATETIME" property="updatedatetime" jdbcType="TIMESTAMP" />
+    <result column="CREATEUSERID" property="createuserid" jdbcType="VARCHAR" />
+    <result column="UPDATEUSERID" property="updateuserid" jdbcType="VARCHAR" />
+    <result column="DATASTATE" property="datastate" jdbcType="CHAR" />
+  </resultMap>
+  <!-- 以下为自定义语句 -->
+  <select id="selectRolesByUserId" resultType="snipe.mybatis.model.Role" parameterType="java.lang.String" >
+    SELECT
+			tb_ent_role.`NAME`,
+			tb_ent_role.ID
+	FROM
+			tb_rel_user_role 
+			LEFT JOIN tb_ent_role ON tb_ent_role.ID = tb_rel_user_role.ROLE_ID
+	where 
+		tb_rel_user_role.USER_ID = #{id,jdbcType=VARCHAR}
+  </select>
+ 
+  <resultMap type="snipe.pageModel.UserDto" id="UserResultMap" extends="BaseResultMap">
+  		<collection property="roles" column="ID" javaType="list" select="selectRolesByUserId"></collection>
+  </resultMap>    
+  
+  <select id="selectUserByDto" resultMap="UserResultMap"  parameterType="snipe.pageModel.UserDto">
+    SELECT t.*
+	FROM tb_ent_user  t
+	WHERE 1=1
+	  <if test="id != null" >
+       and t.id = #{id}   
+      </if>	
+      <if test="loginname != null" >
+       and t.LOGINNAME LIKE CONCAT(CONCAT('%', #{loginname, jdbcType=VARCHAR}),'%')    
+      </if>
+      <if test="name != null" >
+       and t.NAME LIKE CONCAT(CONCAT('%', #{name, jdbcType=VARCHAR}),'%')    
+      </if>	
+      <if test="sort != null and order != null" >
+       order by  t.${sort}  ${order}  
+      </if>	 
+  </select>  
+  
+  
+  <select id="selectResourcesByUserId" resultType="snipe.mybatis.model.Resource" parameterType="java.lang.String" >
+    select 
+      distinct
+	    tb_ent_resource.CREATEDATETIME,
+		tb_ent_resource.DESCRIPTION,
+		tb_ent_resource.ICONCLS,
+		tb_ent_resource.`NAME`,
+		tb_ent_resource.SEQ,
+		tb_ent_resource.UPDATEDATETIME,
+		tb_ent_resource.URL,
+		tb_ent_resource.PID ,
+		tb_ent_resource.RESOURCETYPE_ID,
+		tb_ent_resource.ID
+    from tb_ent_resource
+		LEFT  JOIN tb_ent_resource_type ON tb_ent_resource_type.ID = tb_ent_resource.RESOURCETYPE_ID
+		LEFT JOIN tb_rel_role_resource ON tb_rel_role_resource.RESOURCE_ID = tb_ent_resource.ID
+		LEFT JOIN tb_ent_role ON tb_ent_role.ID = tb_rel_role_resource.ROLE_ID
+		LEFT JOIN tb_rel_user_role ON tb_rel_user_role.ROLE_ID = tb_ent_role.ID
+		LEFT JOIN tb_ent_user ON tb_rel_user_role.USER_ID = tb_ent_user.ID
+	where tb_ent_resource_type.id = '0' 
+			and tb_ent_user.id = #{id,jdbcType=VARCHAR}
+  </select>   
+  
+</mapper>

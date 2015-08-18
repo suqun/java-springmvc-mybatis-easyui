@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="BizResourceMapper" >
+  <!-- 以下是自定义语句  -->
+  <select id="selectResourceByPID" resultType="snipe.mybatis.model.Resource" parameterType="java.lang.String" >
+    select  *
+    from   tb_ent_resource
+    WHERE  tb_ent_resource.ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectResourceTypeByID" resultType="snipe.mybatis.model.ResourceType" parameterType="java.lang.String" >
+    select  *
+    from   tb_ent_resource_type
+    WHERE  tb_ent_resource_type.ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <resultMap type="snipe.pageModel.ResourceDto" id="ResourceResultMap" >
+  		<collection property="resource" column="PID" javaType="snipe.mybatis.model.Resource" select="selectResourceByPID"></collection>
+  		<collection property="resourceType" column="RESOURCETYPE_ID" javaType="snipe.mybatis.model.ResourceType" select="selectResourceTypeByID"></collection>
+  </resultMap>    
+  <select id="selectResourceByDto" resultMap="ResourceResultMap" parameterType="snipe.pageModel.ResourceDto" >
+    select 
+      distinct
+	    tb_ent_resource.CREATEDATETIME,
+		tb_ent_resource.DESCRIPTION,
+		tb_ent_resource.ICONCLS,
+		tb_ent_resource.`NAME`,
+		tb_ent_resource.SEQ,
+		tb_ent_resource.UPDATEDATETIME,
+		tb_ent_resource.URL,
+		tb_ent_resource.PID ,
+		tb_ent_resource.RESOURCETYPE_ID,
+		tb_ent_resource.ID
+    from tb_ent_resource
+		LEFT  JOIN tb_ent_resource_type ON tb_ent_resource_type.ID = tb_ent_resource.RESOURCETYPE_ID
+		LEFT JOIN tb_rel_role_resource ON tb_rel_role_resource.RESOURCE_ID = tb_ent_resource.ID
+		LEFT JOIN tb_ent_role ON tb_ent_role.ID = tb_rel_role_resource.ROLE_ID
+		LEFT JOIN tb_rel_user_role ON tb_rel_user_role.ROLE_ID = tb_ent_role.ID
+		LEFT JOIN tb_ent_user ON tb_rel_user_role.USER_ID = tb_ent_user.ID
+	where   tb_ent_user.id = #{userId,jdbcType=VARCHAR} 
+       <if test="typeId != null">
+        and tb_ent_resource_type.id = #{typeId,jdbcType=VARCHAR} 
+       </if>
+	order by tb_ent_resource.SEQ
+  </select>
+
+
+	<select id="selectResourceById" parameterType="java.lang.String" resultMap="ResourceResultMap">
+		select *
+		from tb_ent_resource t
+		where t.id = #{id}
+	</select>
+</mapper>

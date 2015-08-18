@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="snipe.mybatis.dao.OrganizationMapper" >
+  <resultMap id="BaseResultMap" type="snipe.mybatis.model.Organization" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+    <result column="CODE" property="code" jdbcType="VARCHAR" />
+    <result column="CREATEDATETIME" property="createdatetime" jdbcType="TIMESTAMP" />
+    <result column="ICONCLS" property="iconcls" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="SEQ" property="seq" jdbcType="INTEGER" />
+    <result column="UPDATEDATETIME" property="updatedatetime" jdbcType="TIMESTAMP" />
+    <result column="PID" property="pid" jdbcType="VARCHAR" />
+    <result column="CREATEUSERID" property="createuserid" jdbcType="VARCHAR" />
+    <result column="UPDATEUSERID" property="updateuserid" jdbcType="VARCHAR" />
+    <result column="DATASTATE" property="datastate" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, ADDRESS, CODE, CREATEDATETIME, ICONCLS, NAME, SEQ, UPDATEDATETIME, PID, CREATEUSERID, 
+    UPDATEUSERID, DATASTATE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="snipe.mybatis.model.OrganizationExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_ent_organization
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_ent_organization
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_ent_organization
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="snipe.mybatis.model.OrganizationExample" >
+    delete from tb_ent_organization
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="snipe.mybatis.model.Organization" >
+    insert into tb_ent_organization (ID, ADDRESS, CODE, 
+      CREATEDATETIME, ICONCLS, NAME, 
+      SEQ, UPDATEDATETIME, PID, 
+      CREATEUSERID, UPDATEUSERID, DATASTATE
+      )
+    values (#{id,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
+      #{createdatetime,jdbcType=TIMESTAMP}, #{iconcls,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{seq,jdbcType=INTEGER}, #{updatedatetime,jdbcType=TIMESTAMP}, #{pid,jdbcType=VARCHAR}, 
+      #{createuserid,jdbcType=VARCHAR}, #{updateuserid,jdbcType=VARCHAR}, #{datastate,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="snipe.mybatis.model.Organization" >
+    insert into tb_ent_organization
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="address != null" >
+        ADDRESS,
+      </if>
+      <if test="code != null" >
+        CODE,
+      </if>
+      <if test="createdatetime != null" >
+        CREATEDATETIME,
+      </if>
+      <if test="iconcls != null" >
+        ICONCLS,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="seq != null" >
+        SEQ,
+      </if>
+      <if test="updatedatetime != null" >
+        UPDATEDATETIME,
+      </if>
+      <if test="pid != null" >
+        PID,
+      </if>
+      <if test="createuserid != null" >
+        CREATEUSERID,
+      </if>
+      <if test="updateuserid != null" >
+        UPDATEUSERID,
+      </if>
+      <if test="datastate != null" >
+        DATASTATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="createdatetime != null" >
+        #{createdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="iconcls != null" >
+        #{iconcls,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="seq != null" >
+        #{seq,jdbcType=INTEGER},
+      </if>
+      <if test="updatedatetime != null" >
+        #{updatedatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pid != null" >
+        #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="createuserid != null" >
+        #{createuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="updateuserid != null" >
+        #{updateuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="datastate != null" >
+        #{datastate,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="snipe.mybatis.model.OrganizationExample" resultType="java.lang.Integer" >
+    select count(*) from tb_ent_organization
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_ent_organization
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null" >
+        ADDRESS = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.code != null" >
+        CODE = #{record.code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdatetime != null" >
+        CREATEDATETIME = #{record.createdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.iconcls != null" >
+        ICONCLS = #{record.iconcls,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        NAME = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.seq != null" >
+        SEQ = #{record.seq,jdbcType=INTEGER},
+      </if>
+      <if test="record.updatedatetime != null" >
+        UPDATEDATETIME = #{record.updatedatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.pid != null" >
+        PID = #{record.pid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createuserid != null" >
+        CREATEUSERID = #{record.createuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateuserid != null" >
+        UPDATEUSERID = #{record.updateuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.datastate != null" >
+        DATASTATE = #{record.datastate,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_ent_organization
+    set ID = #{record.id,jdbcType=VARCHAR},
+      ADDRESS = #{record.address,jdbcType=VARCHAR},
+      CODE = #{record.code,jdbcType=VARCHAR},
+      CREATEDATETIME = #{record.createdatetime,jdbcType=TIMESTAMP},
+      ICONCLS = #{record.iconcls,jdbcType=VARCHAR},
+      NAME = #{record.name,jdbcType=VARCHAR},
+      SEQ = #{record.seq,jdbcType=INTEGER},
+      UPDATEDATETIME = #{record.updatedatetime,jdbcType=TIMESTAMP},
+      PID = #{record.pid,jdbcType=VARCHAR},
+      CREATEUSERID = #{record.createuserid,jdbcType=VARCHAR},
+      UPDATEUSERID = #{record.updateuserid,jdbcType=VARCHAR},
+      DATASTATE = #{record.datastate,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="snipe.mybatis.model.Organization" >
+    update tb_ent_organization
+    <set >
+      <if test="address != null" >
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        CODE = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="createdatetime != null" >
+        CREATEDATETIME = #{createdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="iconcls != null" >
+        ICONCLS = #{iconcls,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="seq != null" >
+        SEQ = #{seq,jdbcType=INTEGER},
+      </if>
+      <if test="updatedatetime != null" >
+        UPDATEDATETIME = #{updatedatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pid != null" >
+        PID = #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="createuserid != null" >
+        CREATEUSERID = #{createuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="updateuserid != null" >
+        UPDATEUSERID = #{updateuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="datastate != null" >
+        DATASTATE = #{datastate,jdbcType=CHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="snipe.mybatis.model.Organization" >
+    update tb_ent_organization
+    set ADDRESS = #{address,jdbcType=VARCHAR},
+      CODE = #{code,jdbcType=VARCHAR},
+      CREATEDATETIME = #{createdatetime,jdbcType=TIMESTAMP},
+      ICONCLS = #{iconcls,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      SEQ = #{seq,jdbcType=INTEGER},
+      UPDATEDATETIME = #{updatedatetime,jdbcType=TIMESTAMP},
+      PID = #{pid,jdbcType=VARCHAR},
+      CREATEUSERID = #{createuserid,jdbcType=VARCHAR},
+      UPDATEUSERID = #{updateuserid,jdbcType=VARCHAR},
+      DATASTATE = #{datastate,jdbcType=CHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

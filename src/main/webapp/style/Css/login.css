@@ -1,0 +1,86 @@
+@CHARSET "UTF-8";
+
+body,html {
+	margin: 0;
+	padding: 0;
+	background: url(../loginImage/big-back.png) repeat-x rgb(241, 241, 241);
+	font-family: Georgia, Arial, Helvetica, "Nimbus Sans L", sans-serif;
+}
+
+.verify-input {
+	width: 85px;
+	position: absolute;
+	right: 87px;
+	bottom: 10px;
+	height: 20px;
+	text-align: center;
+}
+
+.verify-img {
+	width: 125px;
+	height: 26px;
+	position: absolute;
+	right: 170px;
+	bottom: 10px;
+}
+
+.form-textbox,.form-textarea,.form-dropdown,.form-radio-other-input,.form-captcha input,.form-list
+	{
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	-moz-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2) inset, 0 1px 0
+		rgba(255, 255, 255, 0.75);
+	-webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2) inset, 0 1px 0
+		rgba(255, 255, 255, 0.75);
+	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2) inset, 0 1px 0
+		rgba(255, 255, 255, 0.75);
+	background-color: #FFFFFF;
+	border: 1px solid #999;
+	padding: 3px 6px;
+	align: center;
+}
+
+#form-body {
+	text-align: center;
+	position: absolute;
+	bottom: 43px;
+	width: 486px;
+	background: url(../loginImage/brushed.png) 50% 50%;
+	right: 6px;
+}
+
+#form-body .account {
+	background-image: url(../loginImage/user_male.png);
+	background-repeat: no-repeat;
+	background-position: 2px 4px;
+	padding-left: 18px;
+	width: 160px;
+}
+#form-body .password {
+	background-image: url(../loginImage/lock_key.png);
+	background-repeat: no-repeat;
+	background-position: 2px 4px;
+	padding-left: 18px;
+	width: 160px;
+}
+
+#form-body ul {
+	padding: 0;
+	list-style: none;
+}
+
+#form-body ul li {
+	margin-top: 20px;
+}
+
+#logo {
+	text-align: center;
+	height: 50px;
+	line-height: 50px;
+}
+
+#logo h1 {
+	display: inline;
+	font-size: 26px;
+}

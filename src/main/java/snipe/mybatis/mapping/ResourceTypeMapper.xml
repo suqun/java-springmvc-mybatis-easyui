@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="snipe.mybatis.dao.ResourceTypeMapper" >
+  <resultMap id="BaseResultMap" type="snipe.mybatis.model.ResourceType" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="CREATEDATETIME" property="createdatetime" jdbcType="TIMESTAMP" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="UPDATEDATETIME" property="updatedatetime" jdbcType="TIMESTAMP" />
+    <result column="CREATEUSERID" property="createuserid" jdbcType="VARCHAR" />
+    <result column="UPDATEUSERID" property="updateuserid" jdbcType="VARCHAR" />
+    <result column="DATASTATE" property="datastate" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, CREATEDATETIME, DESCRIPTION, NAME, UPDATEDATETIME, CREATEUSERID, UPDATEUSERID, 
+    DATASTATE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="snipe.mybatis.model.ResourceTypeExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_ent_resource_type
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_ent_resource_type
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_ent_resource_type
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="snipe.mybatis.model.ResourceTypeExample" >
+    delete from tb_ent_resource_type
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="snipe.mybatis.model.ResourceType" >
+    insert into tb_ent_resource_type (ID, CREATEDATETIME, DESCRIPTION, 
+      NAME, UPDATEDATETIME, CREATEUSERID, 
+      UPDATEUSERID, DATASTATE)
+    values (#{id,jdbcType=VARCHAR}, #{createdatetime,jdbcType=TIMESTAMP}, #{description,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{updatedatetime,jdbcType=TIMESTAMP}, #{createuserid,jdbcType=VARCHAR}, 
+      #{updateuserid,jdbcType=VARCHAR}, #{datastate,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="snipe.mybatis.model.ResourceType" >
+    insert into tb_ent_resource_type
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="createdatetime != null" >
+        CREATEDATETIME,
+      </if>
+      <if test="description != null" >
+        DESCRIPTION,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="updatedatetime != null" >
+        UPDATEDATETIME,
+      </if>
+      <if test="createuserid != null" >
+        CREATEUSERID,
+      </if>
+      <if test="updateuserid != null" >
+        UPDATEUSERID,
+      </if>
+      <if test="datastate != null" >
+        DATASTATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="createdatetime != null" >
+        #{createdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedatetime != null" >
+        #{updatedatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createuserid != null" >
+        #{createuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="updateuserid != null" >
+        #{updateuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="datastate != null" >
+        #{datastate,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="snipe.mybatis.model.ResourceTypeExample" resultType="java.lang.Integer" >
+    select count(*) from tb_ent_resource_type
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_ent_resource_type
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdatetime != null" >
+        CREATEDATETIME = #{record.createdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.description != null" >
+        DESCRIPTION = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        NAME = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updatedatetime != null" >
+        UPDATEDATETIME = #{record.updatedatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createuserid != null" >
+        CREATEUSERID = #{record.createuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateuserid != null" >
+        UPDATEUSERID = #{record.updateuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.datastate != null" >
+        DATASTATE = #{record.datastate,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_ent_resource_type
+    set ID = #{record.id,jdbcType=VARCHAR},
+      CREATEDATETIME = #{record.createdatetime,jdbcType=TIMESTAMP},
+      DESCRIPTION = #{record.description,jdbcType=VARCHAR},
+      NAME = #{record.name,jdbcType=VARCHAR},
+      UPDATEDATETIME = #{record.updatedatetime,jdbcType=TIMESTAMP},
+      CREATEUSERID = #{record.createuserid,jdbcType=VARCHAR},
+      UPDATEUSERID = #{record.updateuserid,jdbcType=VARCHAR},
+      DATASTATE = #{record.datastate,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="snipe.mybatis.model.ResourceType" >
+    update tb_ent_resource_type
+    <set >
+      <if test="createdatetime != null" >
+        CREATEDATETIME = #{createdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null" >
+        DESCRIPTION = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedatetime != null" >
+        UPDATEDATETIME = #{updatedatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createuserid != null" >
+        CREATEUSERID = #{createuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="updateuserid != null" >
+        UPDATEUSERID = #{updateuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="datastate != null" >
+        DATASTATE = #{datastate,jdbcType=CHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="snipe.mybatis.model.ResourceType" >
+    update tb_ent_resource_type
+    set CREATEDATETIME = #{createdatetime,jdbcType=TIMESTAMP},
+      DESCRIPTION = #{description,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      UPDATEDATETIME = #{updatedatetime,jdbcType=TIMESTAMP},
+      CREATEUSERID = #{createuserid,jdbcType=VARCHAR},
+      UPDATEUSERID = #{updateuserid,jdbcType=VARCHAR},
+      DATASTATE = #{datastate,jdbcType=CHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
