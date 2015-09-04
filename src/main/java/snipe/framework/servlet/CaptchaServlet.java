@@ -1,22 +1,21 @@
 package snipe.framework.servlet;
 
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
+import com.octo.captcha.service.CaptchaServiceException;
+import com.octo.captcha.service.multitype.GenericManageableCaptchaService;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.imageio.ImageIO;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.beans.factory.annotation.Autowired;
-
-import com.octo.captcha.service.multitype.GenericManageableCaptchaService;
-import com.octo.captcha.service.CaptchaServiceException;
-import com.sun.image.codec.jpeg.JPEGCodec;
-import com.sun.image.codec.jpeg.JPEGImageEncoder;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+//import com.sun.image.codec.jpeg.JPEGCodec;
+//import com.sun.image.codec.jpeg.JPEGImageEncoder;
  
 @SuppressWarnings("restriction")
 public class CaptchaServlet extends HttpServlet {
@@ -53,9 +52,10 @@ public class CaptchaServlet extends HttpServlet {
 					            httpServletRequest.getLocale()); 
 
 			// a jpeg encoder
-			JPEGImageEncoder jpegEncoder = JPEGCodec
-					.createJPEGEncoder(jpegOutputStream);
-			jpegEncoder.encode(challenge);
+//			JPEGImageEncoder jpegEncoder = JPEGCodec
+//					.createJPEGEncoder(jpegOutputStream);
+//			jpegEncoder.encode(challenge);
+			ImageIO.write(challenge,"jpeg",jpegOutputStream);
 		} catch (IllegalArgumentException e) {
 			httpServletResponse.sendError(HttpServletResponse.SC_NOT_FOUND);
 			return;
