@@ -111,6 +111,7 @@ http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
 			<tx:method name="*" propagation="SUPPORTS" />
 		</tx:attributes>
 	</tx:advice>
+	<!-- 第一个*代表所有的返回值类型；第二个*代表所有的类；第三个*代表类所有方法；..代表子或者孙子包；最后一个..代表所有的参数 -->
 	<aop:config>
 		<aop:pointcut id="transactionPointcut"
 			expression="execution(* snipe.business.service..*Impl.*(..))" />
@@ -135,5 +136,4 @@ http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
 		<aop:advisor advice-ref="druid-stat-interceptor"
 			pointcut-ref="druid-stat-pointcut" />
 	</aop:config>
-
 </beans>
