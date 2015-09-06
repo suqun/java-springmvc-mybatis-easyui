@@ -62,7 +62,7 @@ public interface BaseDao {
 	/**
 	 * 更新数据库记录
 	 * 
-	 * @param namespace
+	 * @param statementName
 	 * @param record
 	 * @return
 	 */

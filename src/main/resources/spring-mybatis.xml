@@ -64,8 +64,9 @@ http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
 	<!-- myBatis文件 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
+		<!--<property name="configLocation" value="classpath:mybatis-config.xml" />-->
 		<!-- 自动扫描entity目录, 省掉Configuration.xml里的手工配置 -->
-		<property name="mapperLocations" value="classpath:snipe/**/mapping/**/*.xml" />
+		<property name="mapperLocations" value="classpath:snipe/**/mapper/**/*.xml" />
 		<property name="plugins">
 			<list>
 				<ref bean="pageInterceptor" />
@@ -76,7 +77,7 @@ http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="snipe.mybatis.dao" />
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
-	</bean>
+    </bean>
 
 	<!-- 配置事务管理器 -->
 	<bean id="transactionManager"

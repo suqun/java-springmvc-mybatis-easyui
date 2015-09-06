@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!-- Register all interfaces in a package as mappers -->
+    <!--<mappers>-->
+        <!--<package name="snipe.mybatis.dao"/>-->
+    <!--</mappers>-->
+
+    <!-- Using classpath relative resources -->
+    <mappers>
+        <mapper resource="snipe/mybatis/dao/OnlineMapper.xml"/>
+        <mapper resource="snipe/mybatis/dao/OrganizationMapper.xml"/>
+        <mapper resource="snipe/mybatis/dao/OrganizationResourceMapper.xml"/>
+        <mapper resource="snipe/mybatis/dao/ResourceMapper.xml"/>
+        <mapper resource="snipe/mybatis/dao/ResourceTypeMapper.xml"/>
+        <mapper resource="snipe/mybatis/dao/RoleMapper.xml"/>
+        <mapper resource="snipe/mybatis/dao/RoleResourceMapper.xml"/>
+        <mapper resource="snipe/mybatis/dao/UserMapper.xml"/>
+        <mapper resource="snipe/mybatis/dao/UserOrganizationMapper.xml"/>
+        <mapper resource="snipe/mybatis/dao/UserRoleMapper.xml"/>
+    </mappers>
+
+</configuration>
