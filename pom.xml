@@ -144,6 +144,8 @@
 		<!--（maven认为src/main/java只是java的源代码路径）。-->
 
 		<!--Maven和Mybatis整合时打包漏掉mapper的xml文件及其它资源-->
+		<sourceDirectory>src/main/java</sourceDirectory>
+		<directory>target</directory>
 		<resources>
 			<resource>
 				<directory>src/main/java</directory>
@@ -153,10 +155,16 @@
 				</includes>
 				<filtering>false</filtering>
 			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>false</filtering>
+				<includes>
+					<include>**/*</include>
+				</includes>
+			</resource>
 		</resources>
-		<!--<finalName>sshe</finalName>-->
-		<plugins>
 
+		<plugins>
 			 <!--编译的时候使用JDK6和UTF8编码-->
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
