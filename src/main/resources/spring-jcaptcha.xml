@@ -121,7 +121,7 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 	<bean id="simpleWhitePaster"
 		class="com.octo.captcha.component.image.textpaster.SimpleTextPaster">
 		<constructor-arg type="java.lang.Integer" index="0">
-			<value>4</value><!--字符最少个数 -->
+			<value>6</value><!--字符最少个数 -->
 		</constructor-arg>
 		<constructor-arg type="java.lang.Integer" index="1">
 			<value>6</value><!--字符最多个数 -->

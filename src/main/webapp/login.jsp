@@ -36,7 +36,7 @@
 		});
 		
 		//登陆按钮前添加图形验证码
-		var $verifyInput = $('<input class="verify-input" id="verifyInput" name="code" maxlength="8"/>');
+		var $verifyInput = $('<input class="verify-input" id="verifyInput" name="code" maxlength="6"/>');
 		var $verifyImg = $('<img src="${pageContext.request.contextPath}/captchaServlet" id="verifyImg" class="verify-img"/>');
 	    $('.dialog-button').prepend($verifyInput).prepend($verifyImg); 
 	    
@@ -49,7 +49,7 @@
 	        return $('#form-body').form('validate');
 	    }).keyup(function() {   
 	            var target = this;
-		        if (target.value.length === 8) {
+		        if (target.value.length === 6) {
 		            target.disabled = true;
 		            $(target).blur();
 		            $.post('${pageContext.request.contextPath}/userController/verifyCode', {
@@ -94,7 +94,7 @@
 			<div title="用户输入模式" style="overflow: hidden; padding: 15px;">
 				<form id="form-body" method="post">
 					<ul> 
-		                <li>账	号 <input class="easyui-validatebox account form-textbox" type="text" name="name" value="Snipe" required="required"></li>
+		                <li>账	号 <input class="easyui-validatebox account form-textbox" type="text" name="name" value="larry" required="required"></li>
 		                <li>密	码 <input class="easyui-validatebox  password form-textbox" type="password" name="pwd" value="123456" required="required"></li>
 	                </ul>
 				</form> 
