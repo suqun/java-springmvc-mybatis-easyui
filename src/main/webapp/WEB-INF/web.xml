@@ -156,18 +156,18 @@
 
 	<!-- 设置欢迎页面 -->
 	<welcome-file-list>
-		<welcome-file>/index.jsp</welcome-file>
+		<welcome-file>/WEB-INF/jsp/index.jsp</welcome-file>
 	</welcome-file-list>
 
 	<!-- 找不到页错误转向 -->
 	<error-page>
 		<error-code>404</error-code>
-		<location>/error/404.jsp</location>
+		<location>/WEB-INF/jsp/error/404.jsp</location>
 	</error-page>
 	<!-- 系统内部错误转向 -->
 	<error-page>
 		<error-code>500</error-code>
-		<location>/error/500.jsp</location>
+		<location>/WEB-INF/jsp/error/500.jsp</location>
 	</error-page>
 
 </web-app>

@@ -4,7 +4,8 @@
 	monitoring="autodetect" dynamicConfig="true">
 
 	<diskStore path="java.io.tmpdir" />
-	<!-- <diskStore path="E:/cachetmpdir" /> -->
+	 <!--<diskStore path="/tmp/cachetmp" />-->
+	 <!--<diskStore path="/opt/apache-tomcat/7.0.64/temp" />-->
 
 	<!-- name：Cache的唯一标识 maxElementsInMemory：内存中最大缓存对象数 maxElementsOnDisk：磁盘中最大缓存对象数，若是0表示无穷大 
 		eternal：Element是否永久有效，一但设置了，timeout将不起作用 overflowToDisk：配置此属性，当内存中Element数量达到maxElementsInMemory时，Ehcache将会Element写到磁盘中 

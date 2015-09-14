@@ -4,7 +4,7 @@
 <html>
 <head>
 <title>SyPro</title>
-<jsp:include page="inc.jsp"></jsp:include>
+<jsp:include page="inc.jsp"/>
 </head>
 <body>
 	<div class="hero-unit">

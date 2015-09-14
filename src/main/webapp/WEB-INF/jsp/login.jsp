@@ -4,7 +4,7 @@
 <html>
 <head>
 <title>系统登录</title>
-<jsp:include page="inc.jsp"></jsp:include>
+<jsp:include page="inc.jsp"/>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/style/Css/login.css" type="text/css">
  
 <script type="text/javascript" charset="utf-8">
