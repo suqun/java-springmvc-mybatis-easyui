@@ -31,7 +31,7 @@
    </resultMap>
    <select id="selectRoleByDto" parameterType="snipe.pageModel.RoleDto" resultMap="RoleResultMap">
    select distinct t1.*
-   from Tb_ent_role t1
+   from tb_ent_role t1
    		left join tb_rel_user_role t2 on t2.role_id = t1.id
    		left join tb_ent_user t3 	  on t3.id = t2.user_id
    where 1=1
@@ -43,7 +43,7 @@
    
    <select id="selectRoleByRoleId" parameterType="java.lang.String" resultMap="RoleResultMap">
    select   *
-   from Tb_ent_role t
+   from tb_ent_role t
    where  t.id = #{id} 
    </select>
    
