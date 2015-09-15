@@ -113,17 +113,17 @@
 <%--	<jsp:include page="user/reg.jsp"></jsp:include>--%>
 	<div id="sessionInfoDiv"></div>
 	<div id="index_layout">
-		<div data-options="region:'north',href:'<%=request.getContextPath()%>/layout/north.jsp'" style="height: 70px; overflow: hidden;" class="logo"></div>
-		<div data-options="region:'west',href:'<%=request.getContextPath()%>/layout/west.jsp',split:true" title="模块导航" style="width: 200px; overflow: hidden;"></div>
+		<div data-options="region:'north',href:'<%=request.getContextPath()%>/baseController/layout/north'" style="height: 70px; overflow: hidden;" class="logo"></div>
+		<div data-options="region:'west',href:'<%=request.getContextPath()%>/baseController/layout/west',split:true" title="模块导航" style="width: 200px; overflow: hidden;"></div>
 		<div data-options="region:'center'" title="欢迎使用Snipe系统" style="overflow: hidden;">
 			<div id="index_tabs" style="overflow: hidden;">
 				<div title="首页" data-options="border:false" style="overflow: hidden;">
-					<iframe src="<%=request.getContextPath()%>/portal/index.jsp" frameborder="0" style="border: 0; width: 100%; height: 98%;"></iframe>
+					<iframe src="<%=request.getContextPath()%>/baseController/portal/index" frameborder="0" style="border: 0; width: 100%; height: 98%;"></iframe>
 				</div>
 			</div>
 		</div>
-		<div data-options="region:'east',href:'<%=request.getContextPath()%>/layout/east.jsp'" title="日历" style="width: 230px; overflow: hidden;"></div>
-		<div data-options="region:'south',href:'<%=request.getContextPath()%>/layout/south.jsp',border:false" style="height: 30px; overflow: hidden;"></div>
+		<div data-options="region:'east',href:'<%=request.getContextPath()%>/baseController/layout/east'" title="日历" style="width: 230px; overflow: hidden;"></div>
+		<div data-options="region:'south',href:'<%=request.getContextPath()%>/baseController/layout/south',border:false" style="height: 30px; overflow: hidden;"></div>
 	</div>
 
 	<div id="index_tabsMenu" style="width: 120px; display: none;">

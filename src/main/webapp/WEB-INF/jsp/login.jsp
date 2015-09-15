@@ -77,7 +77,7 @@
 				$.post('${pageContext.request.contextPath}/userController/login', $('#form-body').serialize(), function(result) {
 					if (result.success) {
 						$('#loginDialog').dialog('close');
-						location.replace('${pageContext.request.contextPath}/index.jsp');
+						location.replace('${pageContext.request.contextPath}/baseController/index');
 					} else {
 						$.messager.alert('错误', result.msg, 'error');
 					}

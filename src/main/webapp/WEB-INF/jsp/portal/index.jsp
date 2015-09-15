@@ -4,7 +4,7 @@
 <html>
 <head>
 <title></title>
-<jsp:include page="../inc.jsp"></jsp:include>
+<jsp:include page="../inc.jsp"/>
 <script type="text/javascript" charset="utf-8">
 	var portalLayout;
 	var portal;
